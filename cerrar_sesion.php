@@ -23,10 +23,10 @@ session_destroy();
 // Eliminar el token de la base de datos asociado al usuario
 if (!empty($usuario)) {
     // Establecer la conexión con la base de datos
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "login";
+    $servername = "db";
+    $username = "mariadb";
+    $password = "mariadb";
+    $dbname = "mariadb";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

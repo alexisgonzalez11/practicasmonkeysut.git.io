@@ -1,9 +1,9 @@
 <?php
 // Establecer la conexión con la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "login";
+$servername = "db";
+$username = "mariadb";
+$password = "mariadb";
+$dbname = "mariadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

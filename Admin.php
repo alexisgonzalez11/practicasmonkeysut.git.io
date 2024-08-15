@@ -6,6 +6,7 @@ session_start();
 if (!isset($_SESSION['usuario'])) {
     // No hay una sesión activa, redirigir al usuario a la página de inicio de sesión
     header("Location: index.html");
+    echo $_SESSION['usuario'];
     exit();
 }
 ?>

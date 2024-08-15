@@ -1,9 +1,10 @@
 <?php
+         session_start();
 // Establecer la conexión con la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "login";
+$servername = "db";
+$username = "mariadb";
+$password = "mariadb";
+$dbname = "mariadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -26,13 +27,14 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows > 0) {
     // Obtener la fila del resultado
     $fila = $resultado->fetch_assoc();
-
+    $aa = $fila['contrasena'];
+    echo "<script>alert('$aa');</script>";
     // Verificar si ya tiene un token activo
     if (empty($fila['token'])) {
         // Verificar la contraseña utilizando password_verify
-        if (password_verify($contraseña, $fila['contraseña'])) {
+        if (password_verify($contraseña, $fila['contrasena'])) {
             // Contraseña válida, procede con la lógica de inicio de sesión
-            session_start();
+   
 
             // Generar y almacenar un token único si no tiene uno activo
             $token = uniqid('', true);
@@ -51,13 +53,13 @@ if ($resultado->num_rows > 0) {
             include 'Token.php';
 
             // Mostrar una alerta indicando que el token se ha generado
-            echo "<script>alert('Token generado correctamente.');window.location.href='index.html'</script>";
+            echo "<script>alert('Token generado correctamente.');window.location.href='Admin.php'</script>";
 
             // Redirigir según el rol (agregaremos esto más adelante)
             // ...
         } else {
             // Contraseña incorrecta
-            echo "<script>alert('Ups! Contraseña y/o usuario incorrecto.');window.location.href='index.html'</script>";
+            echo "<script>alert('Ups! Contraseña y/o usuario incorrecto2.');window.location.href='index.html'</script>";
         }
     } else {
         // El usuario ya tiene un token
